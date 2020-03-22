@@ -1,4 +1,43 @@
+@keyframes appear_nav { from { margin-left:-100%; } to { margin-left:0%; }  }
+@keyframes hide_nav { from { margin-left:0%; } to { margin-left:-100%; }  }
+
+
 * {
-    background-color: black;
+    background-color: rgb(25, 180, 72);
     color: white;
+    text-align: center;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+ul {
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+.nav_show {
+    margin-left: 0%;
+    animation: 0.7s linear 0s appear_nav;
+}
+
+.nav_hide {
+    margin-left: -100%;
+    animation: 0.7s linear 0s hide_nav;
+}
+
+#country_input {
+    border-radius: 20px;
+}
+
+#search_button {
+    border-radius: 20px;
+}
+
+.result {
+    margin-top: 20px;
 }
