@@ -44,13 +44,18 @@ function find_country(country) {
 
 function show_hide_nav_bar(e){
     if(e.target != document.getElementById("open_hide_director")) {
-        return;
+        if (nav_bar_open == false) {
+            return;
+        }
     }
+
     if (nav_bar_open == false) {
+        document.getElementById("list_countries").style.overflow = "scroll";
         old_class = "nav_hide";
         new_class = "nav_show";
     }
     else {
+        document.getElementById("list_countries").style.overflow = "hidden";
         old_class = "nav_show li_open";
         new_class = "nav_hide";
     }
@@ -72,6 +77,7 @@ function main() {
         var elements = JSON.parse(reponse);
         console.log(elements);
         let list_puces = document.getElementById("list_countries");
+        // list_puces.style.overflow = "scroll";
         let i = 0;
         while (i < elements.length) {
             let puce = document.createElement("li");

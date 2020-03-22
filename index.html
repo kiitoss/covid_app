@@ -8,7 +8,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body onclick="show_hide_nav_bar(event)">
     <h1>COVID-19</h1>
 
     <label for="country_input">Pays:</label>
@@ -18,10 +18,9 @@
     <h2>Résultats:</h2>
     <div id="results"></div>
 
-    <nav id="open_hide_director" onclick="show_hide_nav_bar(event)">
-        Open
-        <ul class="nav_part" id="list_countries">
-        </ul>
+    <nav id="navig">
+        <p id="open_hide_director">=</p>
+        <ul id="list_countries"></ul>
     </nav>
 </body>
 
