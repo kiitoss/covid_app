@@ -20,6 +20,21 @@ ul {
     padding: 0;
 }
 
+li {
+    width: 100%;
+}
+
+.nav_part {
+    margin-left: -100%;
+    background-color: grey;
+    cursor: pointer;
+    width: 100%;
+}
+
+.nav_part:hover {
+    background-color: rgb(46, 46, 46);
+}
+
 .nav_show {
     margin-left: 0%;
     animation: 0.7s linear 0s appear_nav;
