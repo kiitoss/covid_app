@@ -42,33 +42,35 @@ function find_country(country) {
 }
 
 
-function show_hide_nav_bar(e){
-    if(e.target != document.getElementById("open_hide_director")) {
-        if (nav_bar_open == false) {
-            return;
-        }
+function nav_manager(e) {
+    if (e.target.classList.contains("country")) {
+        console.log(e.target.innerHTML);
+        find_country(e.target.innerHTML);
     }
+    else if (e.target == document.getElementById("list_countries")) {
+        return;
+    }
+    else if ((e.target == document.getElementById("btn_nav")) || (nav_bar_open == true)) {
+        open_hide_nav();
+    }
+}
 
-    if (nav_bar_open == false) {
-        document.getElementById("list_countries").style.overflow = "scroll";
-        old_class = "nav_hide";
-        new_class = "nav_show";
+function open_hide_nav() {
+    let list_categories = document.getElementById("list_countries");
+    let old_class, new_class;
+    if (nav_bar_open) {
+        old_class = "countries_show";
+        new_class = "countries_hide";
     }
     else {
-        document.getElementById("list_countries").style.overflow = "hidden";
-        old_class = "nav_show li_open";
-        new_class = "nav_hide";
+        old_class = "countries_hide";
+        new_class = "countries_show";
     }
 
-    nav_part = document.getElementsByClassName("nav_part");
-    let i=0;
-    while (i < nav_part.length) {
-        if (nav_part[i].classList.contains(old_class) == true){
-            nav_part[i].classList.remove(old_class);
-        }
-        nav_part[i].classList.add(new_class);
-        i++;
+    if (list_categories.classList.contains(old_class)){
+        list_categories.classList.remove(old_class);
     }
+    list_categories.classList.add(new_class);
     nav_bar_open = !nav_bar_open;
 }
 
@@ -77,26 +79,12 @@ function main() {
         var elements = JSON.parse(reponse);
         console.log(elements);
         let list_puces = document.getElementById("list_countries");
-        // list_puces.style.overflow = "scroll";
         let i = 0;
         while (i < elements.length) {
             let puce = document.createElement("li");
-            puce.setAttribute("class", "nav_part nav_country")
+            puce.setAttribute("class", "country")
             puce.textContent = elements[i]["country"];
             list_puces.appendChild(puce);
-            i++;
-        }
-
-        let nav_country = document.getElementsByClassName("nav_country");
-        i = 0;
-        while (i < nav_country.length) {
-            console.log(nav_country[i].innerHTML);
-            nav_country[i].addEventListener("click", function(){
-                if(nav_bar_open == false) {
-                    return;
-                }
-                find_country(this.innerHTML);
-            }, false);
             i++;
         }
     });
