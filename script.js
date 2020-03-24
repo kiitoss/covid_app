@@ -23,13 +23,26 @@ function renvoie_resultats(url_send) {
 }
 
 function affiche_elements(elem) {
-    showing_part = document.getElementById("results");
-    showing_part.innerHTML = "";
+    if (nav_bar_open) {
+        open_hide_nav();
+    }
+
+    if (window.innerHeight <= reponsive_width) {
+        document.getElementById("results").style.height = "47vh";
+    }
+    else {
+        document.getElementById("results").style.height = "70vh";
+    }
+    
+    let label_results = document.getElementsByClassName("label_result");
+    for(let i = 0; i < label_results.length; i++) {
+        label_results[i].style.visibility = "visible";
+      }
+
     for (let key in elem) {
-        let new_div = document.createElement("div");
-        new_div.setAttribute("class", "result")
-        new_div.textContent = key+": "+elem[key];
-        showing_part.appendChild(new_div);
+        if (document.getElementById(key) != null) {
+            document.getElementById(key).innerHTML = elem[key];
+        }
     }
 
 }
@@ -43,9 +56,8 @@ function find_country(country) {
 
 
 function nav_manager(e) {
-    if (e.target.classList.contains("country")) {
-        console.log(e.target.innerHTML);
-        find_country(e.target.innerHTML);
+    if (e.target.classList.contains("country_part")) {
+        find_country(e.target.parentNode.firstChild.innerHTML);
     }
     else if (e.target == document.getElementById("list_countries")) {
         return;
@@ -56,6 +68,9 @@ function nav_manager(e) {
 }
 
 function open_hide_nav() {
+    if (window.innerHeight > reponsive_width) {
+        return;
+    }
     let list_categories = document.getElementById("list_countries");
     let old_class, new_class;
     if (nav_bar_open) {
@@ -77,15 +92,26 @@ function open_hide_nav() {
 function main() {
     ajaxGet("https://corona.lmao.ninja/countries", function (reponse) {
         var elements = JSON.parse(reponse);
-        console.log(elements);
         let list_puces = document.getElementById("list_countries");
         let i = 0;
         while (i < elements.length) {
             let puce = document.createElement("li");
-            puce.setAttribute("class", "country")
-            puce.textContent = elements[i]["country"];
+            puce.className = "country";
+            let info_puce = "<span class='info_country country_part'>"+elements[i]["country"]+"</span><span class='info_cases country_part'>"+elements[i]["cases"]+"</span><span class='info_deaths country_part'>"+elements[i]["deaths"]+"</span><span class='info_recovered country_part'>"+elements[i]["recovered"]+"</span>";
+            puce.innerHTML =  info_puce;
             list_puces.appendChild(puce);
+            for (let key in elements[i]) {
+                if (total[key] != null) {
+                    total[key] += elements[i][key];
+                }
+            }
             i++;
+        }
+        
+        for (let key in total) {
+            if (document.getElementById("itw_"+key) != null) {
+                document.getElementById("itw_"+key).innerHTML = total[key];
+            }
         }
     });
 }
@@ -95,3 +121,6 @@ window.onload=function() {
 }
 
 var nav_bar_open = false;
+var total_stats = [0, 0, 0, 0, 0, 0, 0, 0];
+var total = {"cases": 0, "recovered": 0, "deaths": 0, "active": 0, "critical": 0, "todayDeaths": 0, "todayCases": 0, "casesPerOneMillion": 0};
+var reponsive_width = 850;

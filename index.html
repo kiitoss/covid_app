@@ -10,16 +10,96 @@
 <body onclick="nav_manager(event)">
     <h1>COVID-19</h1>
 
-    <label for="country_input">Pays:</label>
-    <input type="text" id="country_input" name="country_input" size="10">
-    <button type="button" id="search_button" onclick="find_country()">Chercher</button>
+    <label for="country_input" class="input_line">Country:</label>
+    <input type="text" id="country_input" name="country_input" size="10" class="input_line">
+    <button type="button" id="search_button" class="input_line" onclick="find_country()">Search</button>
 
-    <h2>Résultats:</h2>
-    <div id="results"></div>
+    <h2>Results:</h2>
+    <div id="results">
+        <h3 id="country" class="result"></h3>
+        <div class="result">
+            <p class="label_result">Cases:</p>
+            <p id="cases" class="number_result" style="font-weight: bold;"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Recovered:</p>
+            <p id="recovered" class="number_result" style="color: green; font-weight: bold;""></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Deaths:</p>
+            <p id="deaths" class="number_result" style="color: red; font-weight: bold;"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Active:</p>
+            <p id="active" class="number_result"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Critical:</p>
+            <p id="critical" class="number_result"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Today deaths:</p>
+            <p id="todayDeaths" class="number_result"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Today cases:</p>
+            <p id="todayCases" class="number_result"></p>
+        </div>
+        <div class="result">
+            <p class="label_result">Cases per one million:</p>
+            <p id="casesPerOneMillion" class="number_result"></p>
+        </div>
+    </div>
 
-    <button id="btn_nav">=</button>
+    <div id="in_the_world">
+        <h3 id="itw_title">In the world:</h3>
+        <div>
+            <div class="result">
+                <p class="itw_label">cases:</p>
+                <p id="itw_cases" class="number_result" style="font-weight: bold;"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">recovered:</p>
+                <p id="itw_recovered" class="number_result" style="color: green;"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">deaths:</p>
+                <p id="itw_deaths" class="number_result" style="color: red;"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">active:</p>
+                <p id="itw_active" class="number_result"></p>
+            </div>
+        </div>
+        <div>
+            <div class="result">
+                <p class="itw_label">critical:</p>
+                <p id="itw_critical" class="number_result"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">today deaths:</p>
+                <p id="itw_todayDeaths" class="number_result"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">today cases:</p>
+                <p id="itw_todayCases" class="number_result"></p>
+            </div>
+            <div class="result">
+                <p class="itw_label">cases /million:</p>
+                <p id="itw_casesPerOneMillion" class="number_result"></p>
+            </div>
+        </div>
+    </div>
+
+    <button id="btn_nav">≡</button>
     <nav>
         <ul id="list_countries">
+            <li id="country_head_column" class="country">
+                <span class="info_country">Country</span>
+                <span class="info_cases">Cases</span>
+                <span class="info_deaths">Dead</span>
+                <span class="info_recovered">Recover</span>
+            </li>
         </ul>
     </nav>
 
