@@ -1,130 +1,90 @@
-@keyframes appear_nav { from { margin-left:0vw; } to { margin-left:50vw; }  }
-@keyframes hide_nav { from { margin-left:50vw; } to { margin-left:0vw; }  }
-
+@keyframes appear_nav { from { margin-left:0vw; } to { margin-left:51vw; }  }
+@keyframes hide_nav { from { margin-left:51vw; } to { margin-left:0vw; }  }
 
 * {
     text-align: center;
     padding: 0;
     margin: 0;
+    border-radius: 10px;
 }
-
+html {
+    max-width: 100vw;
+    max-height: 100vh;
+}
 body {
     color: white;
-    background: #FF416C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    height: 100vh;
-    width: 100vw;
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
     overflow: hidden;
 }
 
-/* NAVIGATION */
 #btn_nav {
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 30px;
+    top: 10px; left: 10px;
+    width: 50px; height: 30px;
 }
-
 nav {
     position: absolute;
-    top: 30px;
-    left: -50vw;
+    top: 50px; left: -51vw;
     width: 50vw;
 }
-
 #list_countries {
-    background: #FF4B2B;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, rgb(201, 24, 65), #FF4B2B);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, rgb(201, 24, 65), #FF4B2B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border: 1px solid white;
-    width: 50vw;
-    height: calc(96vh - 30px);
+    background: linear-gradient(to bottom, rgb(201, 24, 65), #FF4B2B);
+    width: 50vw; height: calc(96vh - 50px);
     overflow: scroll;
-    text-align: center;
     list-style: none;
     padding-top: 30px;
     font-size: 11px;
 }
-
 .countries_show {
     animation: 0.5s ease-in-out appear_nav;
     margin-left: 50vw;
 }
-
 .countries_hide {
     animation: 0.5s ease-in-out hide_nav;
     margin-left: 0vw;
 }
-
 .country {
     overflow: hidden;
     line-height: 30px;
     display: flex;
     flex-direction: row;
     background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0;
 }
-
 #country_head_column {
-    background: rgb(201, 24, 65);
     border: 1px solid white;
     position: fixed;
-    width: calc(50vw - 13px);
-    margin-top: -30px;
-    border-radius: 5px;
+    width: 50vw;
+    top: 50px;
     background-color: rgb(73, 0, 0);
 }
-
 .info_country {
     font-weight: bold;
     flex: 4;
 }
-
 .info_cases {
     flex: 2;
 }
-
 .info_deaths {
-    /* background-color: rgba(255, 0, 0, 0.5); */
     color: red;
     flex: 2;
 }
-
 .info_recovered {
-    /* background-color: rgba(0, 128, 0, 0.5); */
     color: green;
     flex: 2;    
 }
-
-
-
 
 h1 {
     line-height: 20vh;
     font-size: 50px;
 }
-h2 {
-    display: none;
-}
-#country_input {
-    border-radius: 20px;
-}
-#search_button {
-    border-radius: 20px;
-}
 .input_line {
     height: 5vh;
 }
 #results {
-    border-radius: 20px;
-    width: 90vw;
-    height: 0;
+    width: 90vw; height: 0;
     margin: 4vh auto;
-    background: rgb(201, 24, 65);  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, rgb(116, 8, 107), rgb(201, 24, 65));  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, rgb(116, 8, 107), rgb(201, 24, 65)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom, rgb(116, 8, 107), rgb(201, 24, 65));
 }
 #country {
     justify-content: center;
@@ -147,20 +107,15 @@ h2 {
     padding-left: 4px;
 }
 
-
-/* IN THE WORLD */
 #in_the_world {
     position: absolute;
     bottom: 0;
-    width: 100vw;
-    height: 20vh;
+    width: 100vw; height: 20vh;
     border: 1px solid white;
-    border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     font-size: 14px;
     display: flex;
     flex-direction: row;
-    
 }
 #itw_title {
     position: absolute;
@@ -202,20 +157,17 @@ h2 {
     }
     #country_head_column {
         width: 20vw;
-        margin-top: -30px;
+        top: 0;
     }
     .country:hover {
         background-color: grey;
         cursor: pointer;
     }
-
     #in_the_world {
         display: initial;
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 15vw;
-        height: 250px;
+        top: 0; right: 0;
+        width: 15vw; height: 250px;
         border: 1px solid white;
         border-radius: 20px;
         padding: 15px;
@@ -228,11 +180,8 @@ h2 {
     #itw_title {
         position: initial;
         line-height: 30px;
-        /* margin: auto; */
         width: auto;
     }
-
-
     h1 {
         line-height: 20vh;
         font-size: 70px;
